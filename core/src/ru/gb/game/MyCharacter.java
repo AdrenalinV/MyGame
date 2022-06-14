@@ -36,27 +36,27 @@ public class MyCharacter {
         TextureRegion tmpTexture = null;
         if (!isJump && !isWalk && !dir) {
             idle.setTime(Gdx.graphics.getDeltaTime());
-            idle.getFrame().flip(false, false);
+            if (idle.getFrame().isFlipX()) idle.getFrame().flip(true, false);
             tmpTexture = idle.getFrame();
         } else if (!isJump && !isWalk && dir) {
             idle.setTime(Gdx.graphics.getDeltaTime());
-            idle.getFrame().flip(true, false);
+            if (!idle.getFrame().isFlipX()) idle.getFrame().flip(true, false);
             tmpTexture = idle.getFrame();
         } else if (!isJump && isWalk && !dir) {
             walkRight.setTime(Gdx.graphics.getDeltaTime());
-            walkRight.getFrame().flip(false, false);
+            if (walkRight.getFrame().isFlipX()) walkRight.getFrame().flip(true, false);
             tmpTexture = walkRight.getFrame();
         } else if (!isJump && isWalk && dir) {
             walkRight.setTime(Gdx.graphics.getDeltaTime());
-            walkRight.getFrame().flip(true, false);
+            if (!walkRight.getFrame().isFlipX()) walkRight.getFrame().flip(true, false);
             tmpTexture = walkRight.getFrame();
         } else if (isJump && !isWalk && !dir) {
             jump.setTime(Gdx.graphics.getDeltaTime());
-            jump.getFrame().flip(false, false);
+            if (jump.getFrame().isFlipX()) jump.getFrame().flip(true, false);
             tmpTexture = jump.getFrame();
         } else if (isJump && !isWalk && dir) {
             jump.setTime(Gdx.graphics.getDeltaTime());
-            jump.getFrame().flip(true, false);
+            if (!jump.getFrame().isFlipX()) jump.getFrame().flip(true, false);
             tmpTexture = jump.getFrame();
         }
         return tmpTexture;
@@ -68,9 +68,5 @@ public class MyCharacter {
 
     public Rectangle getRect() {
         return rect;
-    }
-
-    public boolean isDir() {
-        return dir;
     }
 }
