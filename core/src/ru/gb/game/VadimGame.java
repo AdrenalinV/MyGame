@@ -15,8 +15,10 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.util.ArrayList;
@@ -26,34 +28,55 @@ import java.util.List;
 
 public class VadimGame extends ApplicationAdapter {
     private SpriteBatch batch;
-
     private ShapeRenderer render;
-
     private AnimPlayer batmanAnim;
-
     private Label label;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera;
-
     private List<Coin> coinList;
-
     private Texture fon;
-
     private MyCharacter chip;
-
-
     private int[] foreGround, backGround;
-
-    private int x;
-
     private int score;
+    private World world;
+    private Box2DDebugRenderer debugRenderer;
 
     @Override
     public void create() {
+        world = new World(new Vector2(0, -9.81f), true);
+        debugRenderer = new Box2DDebugRenderer();
+
+        BodyDef def = new BodyDef();
+        FixtureDef fdef = new FixtureDef();
+        PolygonShape polygon = new PolygonShape();
+
+        def.position.set(new Vector2(278f, 160f));
+        def.type = BodyDef.BodyType.StaticBody;
+        fdef.density = 1;
+        fdef.friction = 1f;
+
+        polygon.setAsBox(100, 10);
+        fdef.shape = polygon;
+
+        world.createBody(def).createFixture(fdef);
+
+        def.type = BodyDef.BodyType.DynamicBody;
+
+        for (int i = 0; i < 5; i++) {
+            def.position.set(new Vector2(MathUtils.random(178f, 278f), 300f));
+            def.gravityScale = MathUtils.random(0.5f, 5f);
+            float size = MathUtils.random(3f, 15f);
+            polygon.setAsBox(size, size);
+            fdef.shape = polygon;
+            world.createBody(def).createFixture(fdef);
+        }
+
+        polygon.dispose();
+
         chip = new MyCharacter();
         fon = new Texture("fon.png");
-        map = new TmxMapLoader().load("maps/map1.tmx");
+        map = new TmxMapLoader().load("maps/map2.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
 
         foreGround = new int[1];
@@ -70,7 +93,7 @@ public class VadimGame extends ApplicationAdapter {
         RectangleMapObject o = (RectangleMapObject) map.getLayers().get("Слой объектов 2").getObjects().get("camera");
         camera.position.x = o.getRectangle().x;
         camera.position.y = o.getRectangle().y;
-        camera.zoom = 0.25f;
+        camera.zoom = 0.5f;
         camera.update();
 
         coinList = new ArrayList<>();
@@ -87,6 +110,7 @@ public class VadimGame extends ApplicationAdapter {
     @Override
     public void render() {
         ScreenUtils.clear(1, 0, 0, 1);
+        chip.setWalk(false);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             camera.position.x--;
             chip.setDir(true);
@@ -122,15 +146,18 @@ public class VadimGame extends ApplicationAdapter {
                 score++;
             }
         }
-
         batch.end();
 
         mapRenderer.render(foreGround);
+
+        world.step(1 / 60.0f, 3, 3);
+        debugRenderer.render(world, camera.combined);
     }
 
     @Override
     public void dispose() {
         batch.dispose();
         coinList.get(0).dispose();
+        world.dispose();
     }
 }
