@@ -5,9 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -26,10 +24,7 @@ import java.util.List;
 
 public class VadimGame extends ApplicationAdapter {
     private SpriteBatch batch;
-    private ShapeRenderer render;
-    private AnimPlayer batmanAnim;
     private Label label;
-    private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera;
     private List<Coin> coinList;
@@ -37,7 +32,6 @@ public class VadimGame extends ApplicationAdapter {
     private MyCharacter chip;
     private int[] foreGround, backGround;
     private int score;
-
     private PhysX physX;
 
     @Override
@@ -45,7 +39,7 @@ public class VadimGame extends ApplicationAdapter {
 
         chip = new MyCharacter();
         fon = new Texture("fon.png");
-        map = new TmxMapLoader().load("maps/map2.tmx");
+        TiledMap map = new TmxMapLoader().load("maps/map2.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map);
 
         physX = new PhysX();
@@ -64,8 +58,6 @@ public class VadimGame extends ApplicationAdapter {
         backGround[0] = map.getLayers().getIndex("Слой тайлов 1");
 
         batch = new SpriteBatch();
-        render = new ShapeRenderer();
-        batmanAnim = new AnimPlayer("runRight.png", 8, 1, 16.0f, Animation.PlayMode.LOOP);
         label = new Label(50);
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -107,8 +99,8 @@ public class VadimGame extends ApplicationAdapter {
             physX.setHeroForce(new Vector2(0, -1300));
         }
 
-        camera.position.x = physX.getHero().getPosition().x - chip.getFrame().getRegionWidth() / 4;
-        camera.position.y = physX.getHero().getPosition().y- chip.getFrame().getRegionHeight() / 4;
+        camera.position.x = physX.getHero().getPosition().x - chip.getFrame().getRegionWidth() / 4f;
+        camera.position.y = physX.getHero().getPosition().y- chip.getFrame().getRegionHeight() / 4f;
 
         camera.update();
 
@@ -120,8 +112,8 @@ public class VadimGame extends ApplicationAdapter {
         mapRenderer.render(backGround);
 
         batch.begin();
-        batch.draw(chip.getFrame(), Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        label.draw(batch, "Собрано монет: " + String.valueOf(score), 0, 0);
+        batch.draw(chip.getFrame(), Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
+        label.draw(batch, "Собрано монет: " + score, 0, 0);
 
         Iterator<Coin> iter = coinList.iterator();
         while (iter.hasNext()) {

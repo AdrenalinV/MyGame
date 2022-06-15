@@ -7,18 +7,18 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class MyCharacter {
-    private AnimPlayer idle, jump, walkRight;
+    private final AnimPlayer idle, jump, walkRight;
     private boolean isJump, isWalk, dir;
-    private Vector2 pos;
-    private Rectangle rect;
+    private final Vector2 pos;
+    private final Rectangle rect;
 
     public MyCharacter() {
         idle = new AnimPlayer("hero/idle.png", 1, 1, 16f, Animation.PlayMode.LOOP);
         jump = new AnimPlayer("hero/jump.png", 1, 1, 16f, Animation.PlayMode.LOOP);
         walkRight = new AnimPlayer("hero/runRight.png", 4, 1, 16f, Animation.PlayMode.LOOP);
-        pos = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        rect = new Rectangle(Gdx.graphics.getWidth() / 2,
-                Gdx.graphics.getHeight() / 2,
+        pos = new Vector2(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
+        rect = new Rectangle(Gdx.graphics.getWidth() / 2f,
+                Gdx.graphics.getHeight() / 2f,
                 walkRight.getFrame().getRegionWidth(),
                 walkRight.getFrame().getRegionHeight()
         );
@@ -30,6 +30,10 @@ public class MyCharacter {
 
     public void setDir(boolean dir) {
         this.dir = dir;
+    }
+
+    public void setJump(boolean jump) {
+        isJump = jump;
     }
 
     public TextureRegion getFrame() {
