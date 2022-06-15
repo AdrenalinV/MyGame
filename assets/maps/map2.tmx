@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="245" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="25">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="245" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
  <tileset firstgid="1" name="1626794363_10-kartinkin-com-p-piksel-art-taili-art-krasivo-10" tilewidth="16" tileheight="16" tilecount="4096" columns="64">
   <image source="1626794363_10-kartinkin-com-p-piksel-art-taili-art-krasivo-10.png" width="1024" height="1024"/>
  </tileset>
@@ -15,7 +15,249 @@
   </data>
  </layer>
  <objectgroup id="5" name="land">
-  <object id="24" x="177" y="498" width="268.333" height="46"/>
+  <object id="25" x="0.583333" y="160.167" width="143" height="336.333">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="26" x="0.25" y="496.132" width="430.255" height="175.159">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="28" x="228.667" y="443.667" width="16" height="16">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="DynamicBody"/>
+   </properties>
+  </object>
+  <object id="29" x="560.894" y="496.152" width="606.386" height="175.681">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="30" x="238.333" y="411" width="17.6667" height="21.6667">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="15"/>
+    <property name="name" value="circle"/>
+    <property name="restitution" type="float" value="1"/>
+    <property name="type" value="DynamicBody"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="31" x="429.561" y="593.5" width="131.545" height="78.6663">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="32" x="463.915" y="496.145" width="96.9299" height="47.188">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="33" x="430.561" y="496.043" width="17.276" height="46.6228">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="35" x="1167.89" y="655.333" width="354.212" height="15.833">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="36" x="1167.2" y="496.084" width="352.755" height="21.8983">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="37" x="1520.02" y="496.126" width="223.582" height="172.957">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="42" x="832.061" y="385.5" width="47.9203" height="94.083">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="43" x="896.165" y="383.959" width="47.1703" height="95.958">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="44" x="1905.4" y="496.147" width="880.082" height="172.957">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="45" x="2224.5" y="320.158" width="175.582" height="159.593">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="46" x="2784.69" y="464.34" width="447.355" height="204.866">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="47" x="3231.96" y="496" width="367.923" height="171.479">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="48" x="3599.79" y="528.26" width="143.923" height="142.812">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="49" x="3760.07" y="528.2" width="159.256" height="142.812">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="50" x="3792.37" y="352.261" width="127.256" height="176.145">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="51" x="1743.29" y="624.188" width="161.415" height="48.957">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="52" x="1792.17" y="496.163" width="113.449" height="64.5657">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="53" x="1742.37" y="496.232" width="33.449" height="64.5657">
+   <properties>
+    <property name="density" type="float" value="1"/>
+    <property name="friction" type="float" value="0.25"/>
+    <property name="gravityScale" type="float" value="1"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Слой объектов 2">
+  <object id="41" name="hero" x="160.11" y="480.19" width="16" height="16">
+   <properties>
+    <property name="density" type="float" value="0"/>
+    <property name="friction" type="float" value="0"/>
+    <property name="gravityScale" type="float" value="5"/>
+    <property name="name" value="wall"/>
+    <property name="restitution" type="float" value="0.125"/>
+    <property name="type" value="DynamicBody"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="2" name="Слой тайлов 2" width="245" height="42">
   <data encoding="base64" compression="zlib">
@@ -72,11 +314,6 @@
    <point/>
   </object>
   <object id="17" x="3625" y="519">
-   <point/>
-  </object>
- </objectgroup>
- <objectgroup id="4" name="Слой объектов 2">
-  <object id="19" name="camera" x="185.667" y="497">
    <point/>
   </object>
  </objectgroup>
