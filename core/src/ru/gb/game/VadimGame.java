@@ -3,6 +3,7 @@ package ru.gb.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,6 +24,7 @@ import java.util.List;
 
 
 public class VadimGame extends ApplicationAdapter {
+    private PhysX physX;
     private SpriteBatch batch;
     private Label label;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -32,7 +34,9 @@ public class VadimGame extends ApplicationAdapter {
     private MyCharacter chip;
     private int[] foreGround, backGround;
     private int score;
-    private PhysX physX;
+    private Music music;
+    private int live = 3;
+    private boolean contact = false;
 
     @Override
     public void create() {
@@ -48,8 +52,12 @@ public class VadimGame extends ApplicationAdapter {
             physX.addObjects(mObjects);
         }
         if (map.getLayers().get("Слой объектов 2") != null) {
-            MapObject mObject = map.getLayers().get("Слой объектов 2").getObjects().get("hero");
-            physX.addObject(mObject);
+            MapObjects mObjects = map.getLayers().get("Слой объектов 2").getObjects();
+            for (MapObject mo : mObjects) {
+                if (mo.getName().equals("hero") || mo.getName().equals("ball")) {
+                    physX.addObject(mo);
+                }
+            }
         }
 
         foreGround = new int[1];
@@ -76,23 +84,28 @@ public class VadimGame extends ApplicationAdapter {
                 coinList.add(new Coin(new Vector2(rect.x, rect.y)));
             }
         }
+        music = Gdx.audio.newMusic(Gdx.files.internal("Soundtrack.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.025f);
+        music.play();
+
     }
 
     @Override
     public void render() {
         ScreenUtils.clear(1, 0, 0, 1);
         chip.setWalk(false);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && physX.cl.isOnGround()) {
             physX.setHeroForce(new Vector2(-3000, 0));
             chip.setDir(true);
             chip.setWalk(true);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && physX.cl.isOnGround()) {
             physX.setHeroForce(new Vector2(3000, 0));
             chip.setDir(false);
             chip.setWalk(true);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) && physX.cl.isOnGround()) {
             physX.setHeroForce(new Vector2(0, 1300));
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
@@ -100,7 +113,7 @@ public class VadimGame extends ApplicationAdapter {
         }
 
         camera.position.x = physX.getHero().getPosition().x - chip.getFrame().getRegionWidth() / 4f;
-        camera.position.y = physX.getHero().getPosition().y- chip.getFrame().getRegionHeight() / 4f;
+        camera.position.y = physX.getHero().getPosition().y - chip.getFrame().getRegionHeight() / 4f;
 
         camera.update();
 
@@ -118,13 +131,29 @@ public class VadimGame extends ApplicationAdapter {
         Iterator<Coin> iter = coinList.iterator();
         while (iter.hasNext()) {
             Coin cn = iter.next();
-            cn.draw(batch, camera);
+            int state = cn.draw(batch, camera);
             if (cn.isOverLaps(chip.getRect(), camera)) {
-                iter.remove();
-                score++;
+                if (state == 0) cn.setState();
+                if (state == 2) {
+                    iter.remove();
+                    score++;
+                }
             }
         }
+        label.draw(batch, "Жизней: " + live, 0, Gdx.graphics.getHeight() - 80);
         batch.end();
+
+        if (physX.cl.isOnBallContact() && !contact) {
+            contact = true;
+        }
+        if (!physX.cl.isOnBallContact() && contact) {
+            contact = false;
+            if (live <= 0) {
+                Gdx.app.exit();
+            } else {
+                live--;
+            }
+        }
 
         mapRenderer.render(foreGround);
         physX.step();
@@ -137,5 +166,7 @@ public class VadimGame extends ApplicationAdapter {
         batch.dispose();
         coinList.get(0).dispose();
         physX.dispose();
+        music.stop();
+        music.dispose();
     }
 }
